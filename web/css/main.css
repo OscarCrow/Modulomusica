@@ -1,0 +1,14 @@
+body {
+    background-color: #212529 !important;
+}
+.titulobalnaco {
+    color: #fff;
+}
+.card{
+    margin-bottom: 20px;
+}
+.card-title{
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}

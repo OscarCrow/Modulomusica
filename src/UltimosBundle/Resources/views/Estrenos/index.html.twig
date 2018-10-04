@@ -1,0 +1,36 @@
+{% extends "@Ultimos/layout.html.twig" %}
+
+{% block title %}Lanzamientos{% endblock title %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock stylesheets %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="display-4 titulobalnaco ml-md-2">Lanzamientos</h1>
+        {# dump(datos) #}
+        <div class="card-group">
+            {% for album in datos.albums.items %}
+                <div class="col-md-3">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ album.images[0]['url'] }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ album.name }}</h5>
+                            <p class="card-text">
+                                {% for artist in album.artists %}
+                                    <a href="{{ path('ultimos_artistas', {'id': artist.id})}}">{{ artist.name }}</a>
+                                {% endfor %}                                
+                            </p>
+                            <p class="card-text"><small class="text-muted">{{ album.release_date|date("Y-m-d") }}</small></p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }}    
+{% endblock javascripts %}

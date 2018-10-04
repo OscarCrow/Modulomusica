@@ -1,0 +1,7 @@
+ultimos_lanzamientos:
+    path:     /lanzamientos
+    defaults: { _controller: UltimosBundle:Estrenos:index }
+    
+ultimos_artistas:
+    path:     /artista/{id}
+    defaults: { _controller: UltimosBundle:Estrenos:artista }

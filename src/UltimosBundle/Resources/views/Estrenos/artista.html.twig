@@ -1,0 +1,44 @@
+{% extends "@Ultimos/layout.html.twig" %}
+
+{% block title %}Artista {{ datos.name }}{% endblock title %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock stylesheets %}
+
+{% block body %}
+    {# dump(albumes) #}
+    <div class="container">
+        <a href="{{ path('ultimos_lanzamientos')}}" class="btn btn-light mt-3">Regresar</a>
+        <h2 class="text-center titulobalnaco m-3">{{ datos.name|upper }}</h2>
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <div class="text-center m-3">
+                    <img src="{{ datos.images[1]['url'] }}" class="rounded-circle" height="{{ datos.images[1]['height'] }}" width="{{ datos.images[1]['width'] }}" alt="{{ datos.name }}">
+                </div>
+            </div>
+        </div>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Foto</th>
+                    <th scope="col">Album</th>
+                    <th scope="col">Canciónes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for album in albumes.items %}
+                    <tr>
+                        <th><img src="{{ album.images[2]['url'] }}" class="rounded-circle" height="{{ album.images[2]['height'] }}" width="{{ album.images[2]['width'] }}" alt="{{ album.name }}"></th>
+                        <td>{{ album.name }}</td>
+                        <td>{{ album.total_tracks }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock javascripts %}
