@@ -110,4 +110,69 @@ class PruebasController extends Controller
 
         die();
     }
+
+    /**
+     * @Route("/ConsultaSql", name="consultasql")
+     */
+    public function nativeSqlAction() {
+        $em = $this->getDoctrine()->getManager();
+        $db = $em->getConnection();
+
+        $query = "SELECT * FROM cursos";
+        $stmt = $db->prepare($query);
+        $params = array();
+        $stmt->execute($params);
+
+        $cursos = $stmt->fetchAll();
+
+        foreach($cursos as $curso){
+            echo $curso["id"] . "<br/>";
+            echo $curso["titulo"] . "<br/>";
+            echo $curso["descripcion"] . "<br/>";
+            echo $curso["precio"] . "<br/><hr/>";
+        }
+
+        die();
+    }
+
+    /**
+     * @Route("/consultadql", name="consultadql")
+     */
+    public function consultaDqlAction(){
+        $em = $this->getDoctrine()->getManager();
+
+        $query = $em->createQuery("SELECT c FROM AppBundle:Curso c WHERE c.precio > :precio")
+                    ->setParameter('precio', 79);
+
+        $cursos = $query->getResult();
+
+        foreach($cursos as $curso){
+            echo $curso->getId() . "<br/>";
+            echo $curso->getTitulo() . "<br/>";
+            echo $curso->getDescripcion() . "<br/>";
+            echo $curso->getPrecio() . "<br/><hr/>";
+        }
+
+        die();
+    }
+
+    /**
+     * @Route("/queryBuilder", name="queryBuilder")
+     */
+    public function queryBuilderAction(){
+        $em = $this->getDoctrine()->getManager();
+        
+        $cursos_repo = $em->getRepository("AppBundle:Curso");
+
+        $cursos = $cursos_repo->getCursos();
+
+        foreach($cursos as $curso){
+            echo $curso->getId() . "<br/>";
+            echo $curso->getTitulo() . "<br/>";
+            echo $curso->getDescripcion() . "<br/>";
+            echo $curso->getPrecio() . "<br/><hr/>";
+        }
+
+        die();
+    }
 }
