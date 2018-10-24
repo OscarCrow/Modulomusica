@@ -1,0 +1,20 @@
+{% extends "@App/layout.html.twig" %}
+
+{% block title %}Ejemplos{% endblock title %}
+
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block body %}
+    <div id="list-example" class="list-group">
+        <a class="list-group-item list-group-item-action" href="{{ path('ultimos_lanzamientos')}}">Modulo Musica</a>
+        <hr/>
+        <a class="list-group-item list-group-item-action" href="filtros">Filtros tiwg</a>
+        <hr/>
+        <a class="list-group-item list-group-item-action" href="indexpruebas">Bases de datos</a>
+        <hr/>
+    </div>
+{% endblock body %}
+
+{% block javascripts %}
+{% endblock javascripts %}

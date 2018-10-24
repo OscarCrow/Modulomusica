@@ -4,6 +4,13 @@ parameters:
     #parameter_name: value
 
 services:
+
+    app.twig_filter_vista:
+        class: AppBundle\Twig\FilterVista
+        public: true
+        tags:
+            - { name: twig_extension }
+
     # default configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services
